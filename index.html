@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maa Durga Jewellers | Gold Blessed by Tradition</title>
+    <meta name="description"
+        content="Discover pure gold and bridal jewellery crafted with devotion. Maa Durga Jewellers brings you auspicious luxury and traditional craftsmanship.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@100..900&display=swap"
+        rel="stylesheet">
+
+    <!-- Frameworks -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            gold: '#D4AF37',
+                            charcoal: '#0a0a0a',
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: white;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        .glass-panel {
+            background: rgba(10, 10, 10, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .text-glow {
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #D4AF37;
+            border-radius: 10px;
+        }
+
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0a0a0a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+    </style>
+</head>
+
+<body class="font-sans">
+
+    <!-- Loader -->
+    <div id="loader">
+        <div class="text-center">
+            <h2 class="font-serif text-3xl md:text-5xl text-brand-gold mb-4 animate-pulse">Maa Durga Jewellers</h2>
+            <div class="w-48 h-1 bg-white/10 mx-auto rounded-full overflow-hidden">
+                <div id="loader-bar" class="h-full bg-brand-gold w-0 transition-all duration-300"></div>
+            </div>
+            <p class="mt-4 text-xs tracking-[0.3em] uppercase opacity-50">Sanctifying the sequence...</p>
+        </div>
+    </div>
+
+    <!-- Canvas Background -->
+    <canvas id="hero-canvas"></canvas>
+
+    <!-- Overlay Sections -->
+    <main class="relative z-10">
+        <!-- Section 1: Hero -->
+        <section id="section-1" class="h-[100vh] flex items-center justify-center p-6">
+            <div
+                class="glass-panel p-10 md:p-20 text-center max-w-4xl rounded-sm opacity-0 transform translate-y-10 transition-all duration-1000">
+                <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl mb-6 text-glow leading-tight">
+                    Maa Durga <span class="block text-brand-gold italic">Jewellers</span>
+                </h1>
+                <p class="text-lg md:text-2xl tracking-[0.2em] font-light uppercase opacity-80">
+                    Gold Blessed by Tradition.
+                </p>
+            </div>
+        </section>
+
+        <!-- Spacer for Scroll pinning -->
+        <div class="h-[400vh]"></div>
+
+        <!-- Float Overlays -->
+        <div class="fixed inset-0 pointer-events-none z-20">
+            <!-- Section 2: Bottom Left -->
+            <div id="content-2"
+                class="absolute bottom-20 left-10 md:left-20 max-w-md glass-panel p-8 rounded-sm opacity-0 transform -translate-x-10 transition-all">
+                <h2 class="font-serif text-4xl md:text-5xl mb-4 text-brand-gold leading-tight">Pure Gold.</h2>
+                <p class="text-lg md:text-xl font-light opacity-90">
+                    Crafted with Devotion.
+                </p>
+                <div class="w-20 h-0.5 bg-brand-gold mt-6 mt-6"></div>
+            </div>
+
+            <!-- Section 3: Bottom Right -->
+            <div id="content-3"
+                class="absolute bottom-20 right-10 md:right-20 max-w-md glass-panel p-8 rounded-sm text-right opacity-0 transform translate-x-10 transition-all">
+                <h2 class="font-serif text-4xl md:text-5xl mb-4 text-brand-gold leading-tight">Bridal Gold.</h2>
+                <p class="text-lg md:text-xl font-light opacity-90">
+                    For Sacred Beginnings.
+                </p>
+                <div class="w-20 h-0.5 bg-brand-gold mt-6 ml-auto"></div>
+            </div>
+
+            <!-- Section 4: Center CTA -->
+            <div id="content-4"
+                class="absolute inset-0 flex items-center justify-center p-6 opacity-0 transform scale-95 transition-all">
+                <div
+                    class="relative z-10 glass-panel p-12 md:p-20 text-center max-w-2xl rounded-sm border-brand-gold/30">
+                    <h2 class="font-serif text-4xl md:text-6xl mb-10 leading-tight">Carry the Blessing.</h2>
+                    <button id="shop-cta"
+                        class="inline-block px-10 py-5 bg-brand-gold text-charcoal font-bold tracking-widest uppercase hover:bg-white hover:text-brand-gold transition-colors duration-500 shadow-2xl pointer-events-auto cursor-pointer">
+                        SHOP GOLD COLLECTION
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Second Page Overlay (Outside main to avoid blur) -->
+    <div id="second-page"
+        class="fixed inset-0 z-[100] bg-brand-charcoal opacity-0 pointer-events-none transition-opacity duration-1000 overflow-hidden">
+        <video id="collection-video" src="./public/jw Second page 3 - Made with Clipchamp.mp4" muted loop playsinline
+            class="absolute inset-0 w-full h-full object-cover"></video>
+
+        <!-- Second Page Content -->
+        <div class="relative z-10 h-full w-full flex flex-col justify-between p-10 md:p-20">
+            <div class="flex justify-between items-start">
+                <h3 class="font-serif text-3xl text-brand-gold">The Collection</h3>
+                <button id="close-collection"
+                    class="text-white/50 hover:text-white text-xs tracking-widest uppercase border border-white/20 px-4 py-2">Close</button>
+            </div>
+
+            <div class="max-w-2xl">
+                <h2 class="font-serif text-5xl md:text-7xl mb-6">Sacred Elegance</h2>
+                <p class="text-xl opacity-70 font-light leading-relaxed mb-10">Experience gold that transcends time.
+                    Each piece is a testament to heritage, crafted for moments that define a lifetime.</p>
+                <div class="flex gap-4">
+                    <button
+                        class="bg-brand-gold text-charcoal px-8 py-4 font-bold uppercase tracking-wider text-sm">View
+                        Catalog</button>
+                    <button
+                        class="border border-white/20 px-8 py-4 font-bold uppercase tracking-wider text-sm hover:bg-white hover:text-charcoal transition-all">Contact
+                        Us</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Glass Vignette -->
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
+    </div>
+
+    <style>
+        .page-blur {
+            filter: blur(10px);
+            opacity: 0.5;
+            transition: all 1.5s ease;
+        }
+    </style>
+
+    <script>
+        // GSAP Initialization
+        gsap.registerPlugin(ScrollTrigger);
+
+        const canvas = document.getElementById("hero-canvas");
+        const context = canvas.getContext("2d");
+
+        // Canvas Setup
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        window.addEventListener("resize", () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            render();
+        });
+
+        // Frame configuration - Combining all 3 parts
+        // Part 1: 161 frames
+        // Part 2: 81 frames
+        // Part 3: 81 frames
+        // Total: 323 frames
+        const parts = [
+            { count: 161, path: './public/images/part1/' },
+            { count: 81, path: './public/images/part3/' }
+        ];
+
+        const allFramePaths = [];
+        parts.forEach(part => {
+            for (let i = 1; i <= part.count; i++) {
+                allFramePaths.push(`${part.path}ezgif-frame-${i.toString().padStart(3, '0')}.jpg`);
+            }
+        });
+
+        const frameCount = allFramePaths.length;
+        const currentFrame = index => allFramePaths[index];
+
+        // Preload images
+        const images = [];
+        const airbnb = {
+            frame: 0
+        };
+
+        let loadedImages = 0;
+        const loaderBar = document.getElementById('loader-bar');
+        const loader = document.getElementById('loader');
+
+        function startApp() {
+            if (loader.style.display === "none") return;
+            gsap.to("#loader", {
+                opacity: 0,
+                duration: 1,
+                onComplete: () => {
+                    loader.style.display = "none";
+                    initScrollAnimations();
+                    render(); // Initial render
+                }
+            });
+        }
+
+        // Failsafe: Show a bypass button after 4 seconds
+        setTimeout(() => {
+            const bypass = document.createElement('button');
+            bypass.innerHTML = "ENTER MANUALLY";
+            bypass.className = "mt-8 text-[10px] tracking-[0.2em] text-brand-gold border border-brand-gold/30 px-4 py-2 hover:bg-brand-gold hover:text-charcoal transition-all";
+            bypass.onclick = startApp;
+            document.querySelector('#loader .text-center').appendChild(bypass);
+        }, 4000);
+
+        for (let i = 0; i < frameCount; i++) {
+            const img = new Image();
+            img.src = currentFrame(i);
+            images.push(img);
+
+            let hasLoaded = false;
+            const handleLoad = () => {
+                if (hasLoaded) return;
+                hasLoaded = true;
+                loadedImages++;
+
+                const percentage = Math.round((loadedImages / frameCount) * 100);
+                if (loaderBar) {
+                    loaderBar.style.width = `${percentage}%`;
+                }
+
+                // Update text to show progress
+                const loaderText = document.querySelector('#loader p');
+                if (loaderText) {
+                    loaderText.innerHTML = `Sanctifying the sequence... ${percentage}%`;
+                }
+
+                if (loadedImages >= frameCount) {
+                    setTimeout(startApp, 500);
+                }
+            };
+
+            img.onload = handleLoad;
+            img.onerror = () => {
+                console.warn(`Failed to load: ${img.src}`);
+                handleLoad();
+            };
+
+            if (img.complete) {
+                handleLoad();
+            }
+        }
+
+        function initScrollAnimations() {
+            // Main Sequence Animation
+            gsap.to(airbnb, {
+                frame: frameCount - 1,
+                snap: "frame",
+                ease: "none",
+                scrollTrigger: {
+                    trigger: "main",
+                    start: "top top",
+                    end: "bottom bottom",
+                    scrub: 1 // Heavy, calm scroll
+                },
+                onUpdate: render
+            });
+
+            // Initial Hero Entrance
+            gsap.to("#section-1 > div", {
+                opacity: 1,
+                y: 0,
+                duration: 1.5,
+                delay: 0.5,
+                ease: "power3.out"
+            });
+
+            // Control overlays based on scroll progress
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: "main",
+                    start: "top top",
+                    end: "bottom bottom",
+                    scrub: 1
+                }
+            });
+
+            // Section 1 Fade Out (Starts immediately, fades out by 20%)
+            tl.to("#section-1 > div", { opacity: 0, y: -50, duration: 1 }, 0);
+
+            // Section 2 Fade In/Out (Centered around 33%)
+            tl.to("#content-2", { opacity: 1, x: 0, duration: 1 }, 3); // ~25%
+            tl.to("#content-2", { opacity: 0, x: -20, duration: 1 }, 5); // ~40%
+
+            // Section 3 Fade In/Out (Centered around 66%)
+            tl.to("#content-3", { opacity: 1, x: 0, duration: 1 }, 8); // ~60%
+            tl.to("#content-3", { opacity: 0, x: 20, duration: 1 }, 10); // ~75%
+
+            // Section 4 Fade In (at 90%)
+            tl.to("#content-4", {
+                opacity: 1,
+                scale: 1,
+                duration: 1,
+                onStart: () => {
+                    document.getElementById('content-4').classList.add('pointer-events-auto');
+                },
+                onReverseComplete: () => {
+                    document.getElementById('content-4').classList.remove('pointer-events-auto');
+                }
+            }, 11.5);
+        }
+
+        // Second Page Logic
+        const shopBtn = document.getElementById('shop-cta');
+        const secondPage = document.getElementById('second-page');
+        const closeBtn = document.getElementById('close-collection');
+        const collectionVideo = document.getElementById('collection-video');
+
+        shopBtn.addEventListener('click', () => {
+            document.querySelector('main').classList.add('page-blur');
+            document.getElementById('hero-canvas').classList.add('page-blur');
+
+            gsap.to(secondPage, {
+                opacity: 1,
+                pointerEvents: 'all',
+                duration: 1.5,
+                ease: 'power3.inOut',
+                onStart: () => {
+                    collectionVideo.play();
+                }
+            });
+        });
+
+        closeBtn.addEventListener('click', () => {
+            document.querySelector('main').classList.remove('page-blur');
+            document.getElementById('hero-canvas').classList.remove('page-blur');
+
+            gsap.to(secondPage, {
+                opacity: 0,
+                pointerEvents: 'none',
+                duration: 1,
+                onComplete: () => {
+                    collectionVideo.pause();
+                }
+            });
+        });
+
+        images[0].onload = render;
+
+        function render() {
+            const img = images[airbnb.frame];
+            if (!img) return;
+
+            // Object-cover logic for canvas
+            const canvasRatio = canvas.width / canvas.height;
+            const imgRatio = img.width / img.height;
+            let drawWidth, drawHeight, offsetX, offsetY;
+
+            if (canvasRatio > imgRatio) {
+                drawWidth = canvas.width;
+                drawHeight = canvas.width / imgRatio;
+                offsetX = 0;
+                offsetY = (canvas.height - drawHeight) / 2;
+            } else {
+                drawWidth = canvas.height * imgRatio;
+                drawHeight = canvas.height;
+                offsetX = (canvas.width - drawWidth) / 2;
+                offsetY = 0;
+            }
+
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            context.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
+        }
+
+        // Initialize first frame
+        window.onload = () => {
+            render();
+        };
+
+    </script>
+</body>
+
+</html>
